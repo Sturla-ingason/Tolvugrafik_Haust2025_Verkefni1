@@ -6,6 +6,7 @@ var locColor;
 var uShiftLocY;
 var shiftAmountY = 0.0;
 var shiftAmountX = 0.0;
+var carShift = 0.0;
 
 var uThetaLoc;
 var theta = 0.0;
@@ -49,75 +50,7 @@ window.onload = function init(){
     gl.useProgram(program);
 
 
-    //TODO Búa til leikma
-    var player = [
-        vec2(0.05, -0.9),
-        vec2(-0.05, -0.9),
-        vec2(0.0, -0.8)
-    ];
-
-
-    //TODO Búa til kassan sithovru megin sem endzone
-    var topEndZone = [
-        vec2(1.0, 0.6),
-        vec2(1.0, 1.0),
-        vec2(-1.0, 0.6),
-        vec2(-1.0, 1.0),
-    ];
-
-    var bottomEndZone = [
-        vec2(-1.0 , -1.0),
-        vec2(-1.0 , -0.6),
-        vec2(1.0, -1.0),
-        vec2(1.0, -0.6)
-    ];
-
-
-    //TODO Búa til göturnar fyrir bílana, eiga að vera 3 götur.
-    var road1 = [
-        vec2(-1.0, -0.6),
-        vec2(-1.0, -0.2),
-        vec2(1.0, -0.6),
-        vec2(1.0, -0.2)
-    ];
-
-    var road2 = [
-        vec2(-1.0, -0.2),
-        vec2(-1.0, 0.2),
-        vec2(1.0, -0.2),
-        vec2(1.0 , 0.2)
-    ];
-
-    var road3 = [
-        vec2(-1.0, 0.2),
-        vec2(-1.0, 0.6),
-        vec2(1.0, 0.2),
-        vec2(1.0, 0.6)
-    ];
-
-
-    //TODO Punktar fyrir bílanna
-
-    var car1 = [
-        vec2(),
-        vec2(),
-        vec2(),
-        vec2()
-    ]
-
-    var car2 = [
-        vec2(),
-        vec2(),
-        vec2(),
-        vec2()
-    ]
-
-    var car3 = [
-        vec2(),
-        vec2(),
-        vec2(),
-        vec2()
-    ]
+    //TODO Búa til leikm
 
 
     //Player buffer
@@ -204,6 +137,11 @@ window.onload = function init(){
 }
 
 
+function carMove(){
+
+}
+
+
 // Búm til render fall til að teikna á strigan
 function render(){
     gl.clear(gl.COLOR_BUFFER_BIT);
@@ -239,7 +177,10 @@ function render(){
 
     //TODO Rendera bíla
 
-
+    gl.bindBuffer(gl.ARRAY_BUFFER, bufferID_car1);
+    gl.vertexAttribPointer(locPosition, 2, gl.FLOAT, false, 0, 0);
+    gl.uniform4fv(locColor, flatten(red));
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 
     //draw player
     gl.bindBuffer(gl.ARRAY_BUFFER, bufferID_Player);
@@ -254,5 +195,10 @@ function render(){
 
     gl.uniform1f(uShiftLocY, 0.0);
     gl.uniform1f(uShiftLocX, 0.0);
+
+
+    setTimeout(function(){
+        window.requestAnimFrame(render);
+    }, 1000/20);
 
 }
