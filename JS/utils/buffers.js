@@ -1,8 +1,10 @@
- //Player buffer
+//Player buffer
+
     bufferID_Player = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, bufferID_Player);
     gl.bufferData(gl.ARRAY_BUFFER, flatten(player), gl.DYNAMIC_DRAW);
 
+    
     //End zone buffers
     bufferID_topEndZone = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, bufferID_topEndZone);
@@ -11,6 +13,7 @@
     bufferID_bottomEndZone = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, bufferID_bottomEndZone);
     gl.bufferData(gl.ARRAY_BUFFER, flatten(bottomEndZone), gl.STATIC_DRAW);
+
 
     //Road buffers
     bufferID_road1 = gl.createBuffer();
@@ -25,6 +28,8 @@
     gl.bindBuffer(gl.ARRAY_BUFFER, bufferID_road3);
     gl.bufferData(gl.ARRAY_BUFFER, flatten(road3), gl.STATIC_DRAW);
 
+
+    //Car buffers
     bufferID_car1 = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, bufferID_car1);
     gl.bufferData(gl.ARRAY_BUFFER, flatten(car1), gl.DYNAMIC_DRAW);

@@ -23,3 +23,10 @@ var bufferID_road3;
 var bufferID_car1;
 var bufferID_car2;
 var bufferID_car3;
+
+var yellow = vec4(1.0,1.0,0.0,1.0);
+var cyan = vec4(0.0,1.0,1.0,1.0);
+var purple = vec4(1.0,0.0,1.0,1.0);
+var red = vec4(1.0, 0.0, 0.0, 1.0);
+var green = vec4(0.0, 1.0, 0.0, 1.0);
+var blue = vec4(0.0, 0.0, 1.0, 1.0);

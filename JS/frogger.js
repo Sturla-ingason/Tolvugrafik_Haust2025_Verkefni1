@@ -1,37 +1,3 @@
-// Global variables
-var gl;
-var locPosition;
-var locColor;
-
-var uShiftLocY;
-var shiftAmountY = 0.0;
-var shiftAmountX = 0.0;
-var carShift = 0.0;
-
-var uThetaLoc;
-var theta = 0.0;
-
-//Buffers
-var bufferID_Player;
-
-var bufferID_topEndZone;
-var bufferID_bottomEndZone;
-
-var bufferID_road1;
-var bufferID_road2;
-var bufferID_road3;
-
-var bufferID_car1;
-var bufferID_car2;
-var bufferID_car3;
-
-//Static colors that we can use
-var yellow = vec4(1.0,1.0,0.0,1.0);
-var cyan = vec4(0.0,1.0,1.0,1.0);
-var purple = vec4(1.0,0.0,1.0,1.0);
-var red = vec4(1.0, 0.0, 0.0, 1.0);
-var green = vec4(0.0, 1.0, 0.0, 1.0);
-var blue = vec4(0.0, 0.0, 1.0, 1.0);
 
 window.onload = function init(){
 
@@ -50,14 +16,14 @@ window.onload = function init(){
     gl.useProgram(program);
 
 
-    //TODO Búa til leikm
-
 
     //Player buffer
+
     bufferID_Player = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, bufferID_Player);
     gl.bufferData(gl.ARRAY_BUFFER, flatten(player), gl.DYNAMIC_DRAW);
 
+    
     //End zone buffers
     bufferID_topEndZone = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, bufferID_topEndZone);
@@ -66,6 +32,7 @@ window.onload = function init(){
     bufferID_bottomEndZone = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, bufferID_bottomEndZone);
     gl.bufferData(gl.ARRAY_BUFFER, flatten(bottomEndZone), gl.STATIC_DRAW);
+
 
     //Road buffers
     bufferID_road1 = gl.createBuffer();
@@ -80,6 +47,8 @@ window.onload = function init(){
     gl.bindBuffer(gl.ARRAY_BUFFER, bufferID_road3);
     gl.bufferData(gl.ARRAY_BUFFER, flatten(road3), gl.STATIC_DRAW);
 
+
+    //Car buffers
     bufferID_car1 = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, bufferID_car1);
     gl.bufferData(gl.ARRAY_BUFFER, flatten(car1), gl.DYNAMIC_DRAW);
@@ -92,7 +61,7 @@ window.onload = function init(){
     gl.bindBuffer(gl.ARRAY_BUFFER, bufferID_car3);
     gl.bufferData(gl.ARRAY_BUFFER, flatten(car3), gl.DYNAMIC_DRAW);
 
-    
+
 
     locPosition = gl.getAttribLocation( program, "vPosition" );
     gl.enableVertexAttribArray( locPosition );
@@ -138,6 +107,11 @@ window.onload = function init(){
 
 
 function carMove(){
+
+    if(carShift < 3){
+        carShift += 0.1;
+        console.log(carShift);
+    }
 
 }
 
@@ -197,8 +171,5 @@ function render(){
     gl.uniform1f(uShiftLocX, 0.0);
 
 
-    setTimeout(function(){
-        window.requestAnimFrame(render);
-    }, 1000/20);
 
 }
