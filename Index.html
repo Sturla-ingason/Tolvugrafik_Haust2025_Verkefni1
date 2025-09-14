@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <!--  -->
+        <script id="vertex-shader" type="x-shader/x-vertex">
+            attribute vec2 vPosition;
+            uniform float shiftY;
+            uniform float shiftX;
+            uniform float theta;
+            uniform vec2 pivot;
+
+            void
+            main()
+            {
+
+                vec2 pos = vPosition + vec2(shiftX, shiftY);
+                //gl_Position verður að vera vec4
+                gl_Position = vec4(pos, 0.0, 1.0);
+
+
+                //float s = sin(theta);
+                //float c = cos(theta);
+
+                //gl_Position.x = -s * pos.y + c * pos.x;
+                //gl_Position.y =  s * pos.x + c * pos.y;
+                //gl_Position.z = 0.0;
+                //gl_Position.w = 1.0;
+
+            }
+        </script>
+
+        <!--  -->
+        <script id="fragment-shader" type="x-shader/x-fragment">
+            precision mediump float;
+            uniform vec4 rColor;
+
+            void
+            main()
+            {
+                gl_FragColor = rColor;
+            }
+        </script>
+
+        <!-- Allar scriptur fyrir webGL -->
+        <!-- Allar scriptur eru lesnar í röð þannig frogger.js verður að koma seinast-->
+        <script type="text/javascript" src="./JS/webgl-utils.js"></script>
+        <script type="text/javascript" src="./JS/initShaders.js"></script>
+        <script type="text/javascript" src="./JS/MV.js"></script>
+        <script type="text/javascript" src="./JS/frogger.js"></script>
+
+    </head>
+
+
+    <body>
+
+        <canvas id="gl-canvas" width="512" height="512">
+        Oops ... your browser doesn't support the HTML5 canvas element
+        </canvas>
+
+    </body>
+
+</html>
